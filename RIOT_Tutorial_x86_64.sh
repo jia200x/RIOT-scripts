@@ -1,4 +1,17 @@
-TOOLCHAIN_URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/6-2017q2/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2?product=GNU%20ARM%20Embedded%20Toolchain,64-bit,,Linux,6-2017-q2-update
+#Bootstrap architecture
+ARCH=`uname -m`
+if [ ${ARCH} == 'x86_64' ]; then
+  echo "64 bit platform detected"
+  TOOLCHAIN_URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/6-2017q2/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2?product=GNU%20ARM%20Embedded%20Toolchain,64-bit,,Linux,6-2017-q2-update
+
+  #Required for running native on x86_64 platforms
+  sudo apt-get install gcc-multilib -y
+else
+  echo "32 bit platform detected"
+  TOOLCHAIN_URL=https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
+fi
+
+#Create temp dir
 CURR_DIR=$(pwd)
 mkdir tmp
 cd tmp
@@ -15,9 +28,6 @@ git clone --recursive https://github.com/RIOT-OS/Tutorials
 sudo apt-get install build-essential pkg-config autoconf automake libtool libusb-dev libusb-1.0-0-dev libhidapi-dev -y
 sudo apt-get install python-pip -y
 pip install pyserial -y
-
-#Required for running native on x86_64 platforms
-sudo apt-get install gcc-multilib -y
 
 #Install OpenOCD
 cd $RIOT_TMP
