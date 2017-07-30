@@ -13,8 +13,10 @@ git clone --recursive https://github.com/RIOT-OS/Tutorials
 #Install dependencies
 sudo apt-get install build-essential pkg-config autoconf automake libtool libusb-dev libusb-1.0-0-dev libhidapi-dev -y
 sudo apt-get install python-pip -y
-sudo apt-get install gcc-multilib -y
 pip install pyserial -y
+
+#Required for running native on x86_64 platforms
+sudo apt-get install gcc-multilib -y
 
 #Install OpenOCD
 cd $RIOT_TMP
