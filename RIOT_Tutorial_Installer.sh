@@ -57,8 +57,14 @@ sudo service udev restart
 cd $CURR_DIR
 rm -rf $RIOT_TMP
 
-#Run default example
-cd $CURR_DIR/Tutorials/RIOT/examples/default
-make BOARD=samr21-xpro all flash
-sudo make BOARD=samr21-xpro term
+read -n1 -r -p "Setup finished. Do you want to compile and flash the default example? [y/n]" key
+
+if [$key == 'y']; then
+  #Run default example
+  read -n1 -r -p "Connect the device (Atmel SAMR21 Xplained Pro) to your Micro-USB cable using the port labeled as EDBG. Then press any key"
+  cd $CURR_DIR/Tutorials/RIOT/examples/default
+  make BOARD=samr21-xpro all flash
+  sudo make BOARD=samr21-xpro term
+fi
+echo "Happy coding!"
 
