@@ -52,7 +52,6 @@ source /etc/profile && export PATH
 echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev"'     | sudo tee -a /etc/udev/rules.d/99-usb.rules
 sudo service udev restart
 
-
 #Remove tmp dir
 cd $CURR_DIR
 rm -rf $RIOT_TMP
@@ -60,14 +59,5 @@ rm -rf $RIOT_TMP
 #Add dialout permissions to current user
 sudo usermod -a -G dialout $USER
 
-read -n1 -r -p "Setup finished. Do you want to compile and flash the default example? [y/n]" key
-
-if [$key == 'y']; then
-  #Run default example
-  read -n1 -r -p "Connect the device (Atmel SAMR21 Xplained Pro) to your Micro-USB cable using the port labeled as EDBG. Then press any key"
-  cd $CURR_DIR/Tutorials/RIOT/examples/default
-  make BOARD=samr21-xpro all flash
-  sudo make BOARD=samr21-xpro term
-fi
+echo -n "Setup finished."
 echo "Please reboot. Happy coding!"
-
