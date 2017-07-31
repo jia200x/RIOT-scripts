@@ -57,6 +57,9 @@ sudo service udev restart
 cd $CURR_DIR
 rm -rf $RIOT_TMP
 
+#Add dialout permissions to current user
+sudo usermod -a -G dialout $USER
+
 read -n1 -r -p "Setup finished. Do you want to compile and flash the default example? [y/n]" key
 
 if [$key == 'y']; then
@@ -66,5 +69,5 @@ if [$key == 'y']; then
   make BOARD=samr21-xpro all flash
   sudo make BOARD=samr21-xpro term
 fi
-echo "Happy coding!"
+echo "Please reboot. Happy coding!"
 
