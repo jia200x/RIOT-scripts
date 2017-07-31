@@ -54,8 +54,9 @@ sudo service udev restart
 cd $CURR_DIR
 rm -rf $RIOT_TMP
 
-#Add dialout permissions to current user
+#Add dialout and plugdev permissions to current user
 sudo usermod -a -G dialout $USER
+sudo usermod -a -G plugdev $USER
 
 echo -n "Setup finished."
 echo "Please reboot. Happy coding!"
