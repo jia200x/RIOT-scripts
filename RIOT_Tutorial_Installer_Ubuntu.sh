@@ -18,8 +18,6 @@ cd tmp
 RIOT_TMP=$(pwd)
 
 cd $CURR_DIR
-#Install git
-sudo apt-get install git -y
 
 #Clone RIOT Tutorials
 git clone --recursive https://github.com/RIOT-OS/Tutorials
