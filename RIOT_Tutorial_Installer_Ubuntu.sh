@@ -19,9 +19,6 @@ RIOT_TMP=$(pwd)
 
 cd $CURR_DIR
 
-#Clone RIOT Tutorials
-git clone --recursive https://github.com/RIOT-OS/Tutorials
-
 #Install dependencies
 sudo apt-get install build-essential pkg-config autoconf automake libtool libusb-dev libusb-1.0-0-dev libhidapi-dev -y
 sudo apt-get install python-pip -y
