@@ -2,7 +2,7 @@
 ARCH=`uname -m`
 if [ ${ARCH} == 'x86_64' ]; then
   echo "64 bit platform detected"
-  TOOLCHAIN_URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/6-2017q2/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2?product=GNU%20ARM%20Embedded%20Toolchain,64-bit,,Linux,6-2017-q2-update
+  TOOLCHAIN_URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2018q4/gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2?revision=d830f9dd-cd4f-406d-8672-cca9210dd220?product=GNU%Arm%Embedded%Toolchain,64-bit,,Linux,8-2018-q4-major
 
   #Required for running native on x86_64 platforms
   sudo apt-get install gcc-multilib -y
@@ -19,9 +19,6 @@ RIOT_TMP=$(pwd)
 
 cd $CURR_DIR
 
-#Clone RIOT Tutorials
-git clone --recursive https://github.com/RIOT-OS/Tutorials
-
 #Install dependencies
 sudo apt-get install build-essential pkg-config autoconf automake libtool libusb-dev libusb-1.0-0-dev libhidapi-dev -y
 sudo apt-get install python-pip -y
@@ -35,6 +32,9 @@ cd openocd/
 ./configure
 make
 sudo make install
+
+##ADD openocd udev rules
+cp contrib/60-openocd.rules /etc/udev/rules.d
 
 #Install ARM Toolchain
 cd $RIOT_TMP
