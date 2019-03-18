@@ -33,6 +33,9 @@ cd openocd/
 make
 sudo make install
 
+##ADD openocd udev rules
+cp contrib/60-openocd.rules /etc/udev/rules.d
+
 #Install ARM Toolchain
 cd $RIOT_TMP
 wget $TOOLCHAIN_URL -O gcc.tar.bz2
